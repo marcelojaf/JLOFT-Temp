@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="JLOFT.Mobile.Views.Controls.BorderedFormControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:JLOFT.Mobile.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="formControl"
+    mc:Ignorable="d">
+    <ContentView.Resources>
+        <converters:StringIsEmptyBooleanConverter x:Key="StringIsEmptyBooleanConverter" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label
+                x:Name="MainLabel"
+                Grid.Row="0"
+                Margin="0,0,0,5"
+                IsVisible="{Binding LabelText, Converter={StaticResource StringIsEmptyBooleanConverter}, TargetNullValue='false'}"
+                Style="{Binding LabelStyle}"
+                Text="{Binding LabelText}" />
+            <Frame
+                x:Name="BorderFrame"
+                Grid.Row="1"
+                Margin="0,0,0,5"
+                MinimumHeightRequest="60"
+                Style="{StaticResource EntryFrame}" />
+            <Label
+                x:Name="AssistantLabel"
+                Grid.Row="2"
+                Style="{StaticResource CaptionLabelStyle}" />
+        </Grid>
+    </ContentView.Content>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="Normal">
+                <VisualState.Setters>
+                    <Setter TargetName="BorderFrame" Property="Frame.BorderColor" Value="{Binding BorderColor}" />
+                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="{Binding LabelTextColor}" />
+                    <Setter TargetName="AssistantLabel" Property="Label.TextColor" Value="{Binding AssistantLabelTextColor}" />
+                    <Setter TargetName="AssistantLabel" Property="Label.Text" Value="{Binding AssistantLabelText}" />
+                    <Setter Property="Opacity" Value="1" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Invalid">
+                <VisualState.Setters>
+                    <Setter TargetName="BorderFrame" Property="Frame.BorderColor" Value="Red" />
+                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="Red" />
+                    <Setter TargetName="AssistantLabel" Property="Label.TextColor" Value="Red" />
+                    <Setter TargetName="AssistantLabel" Property="Label.Text" Value="{Binding Validation.Message}" />
+                    <Setter Property="Opacity" Value="1" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Disabled">
+                <VisualState.Setters>
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter TargetName="BorderFrame" Property="Frame.BorderColor" Value="{Binding BorderColor}" />
+                    <Setter TargetName="MainLabel" Property="Label.TextColor" Value="{Binding LabelTextColor}" />
+                    <Setter TargetName="AssistantLabel" Property="Label.TextColor" Value="{Binding AssistantLabelTextColor}" />
+                    <Setter TargetName="AssistantLabel" Property="Label.Text" Value="{Binding AssistantLabelText}" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+</ContentView>

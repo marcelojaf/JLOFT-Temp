@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="RedBit.Mobile.Controls.MaterialEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:RedBit.Mobile.Controls">
+    <ContentView.Content>
+        <Grid
+            x:Name="container"
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.Margin>
+                <OnPlatform Android="0,8" iOS="0,10" />
+            </Grid.Margin>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label
+                x:Name="HiddenLabel"
+                Margin="0"
+                IsVisible="False"
+                LineBreakMode="TailTruncation"
+                MaxLines="1"
+                VerticalOptions="StartAndExpand"
+                VerticalTextAlignment="End" />
+            <local:BorderlessEntry
+                x:Name="EntryField"
+                Margin="0,12,0,0"
+                HeightRequest="30"
+                Text="{Binding Text, Mode=TwoWay}" />
+            <BoxView
+                x:Name="BottomBorder"
+                Grid.Row="1"
+                Margin="0"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand" />
+            <BoxView
+                x:Name="HiddenBottomBorder"
+                Grid.Row="1"
+                Margin="0"
+                HeightRequest="1"
+                HorizontalOptions="Center"
+                WidthRequest="0" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

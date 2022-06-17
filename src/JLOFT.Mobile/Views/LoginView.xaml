@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<local:LoginViewXaml
+    x:Class="JLOFT.Mobile.Views.LoginView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RedBit.Mobile.Controls;assembly=RedBit.Mobile.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:i18n="clr-namespace:JLOFT.Mobile;assembly=JLOFT.Mobile"
+    xmlns:local="clr-namespace:JLOFT.Mobile.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewControls="clr-namespace:JLOFT.Mobile.Views.Controls;assembly=JLOFT.Mobile"
+    xmlns:viewModels="clr-namespace:JLOFT.Mobile.ViewModels"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <viewControls:CustomScrollView>
+            <Grid
+            Margin="0"
+            BackgroundColor="White"
+            ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            Padding="0"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Margin="20,0" Grid.Row="0">
+                    <Grid.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Default="0, 0, 0, 0" />
+                    </Grid.Padding>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--  Second Harvest Logo  -->
+                    <Image
+                    Grid.Row="1"
+                    Aspect="AspectFill"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="secondharvest_logo"
+                    VerticalOptions="Center" />
+
+                    <StackLayout
+                    Grid.Row="3"
+                    Margin="0,20"
+                    VerticalOptions="Center">
+                        <StackLayout Spacing="{StaticResource EntrySpacing}">
+                            <!--  Email Entry  -->
+                            <viewControls:JLOFTEntry
+                            BorderColor="{StaticResource TertiaryColor}"
+                            EntryText="{Binding Email}"
+                            EntryTextColor="{StaticResource TertiaryColor}"
+                            LabelText="Email"
+                            LabelTextColor="{StaticResource TertiaryColor}" />
+                            <!--  Password Entry  -->
+                            <viewControls:JLOFTPwEntry
+                            BorderColor="{StaticResource TertiaryColor}"
+                            EntryText="{Binding Password}"
+                            EntryTextColor="{StaticResource TertiaryColor}"
+                            HidePassword="{Binding HidePassword}"
+                            LabelText="Email"
+                            LabelTextColor="{StaticResource TertiaryColor}"
+                            ToggledOffImage="visibility_off_white"
+                            ToggledOnImage="password_white" />
+                        </StackLayout>
+
+                        <StackLayout Spacing="{StaticResource DefaultSpacing}">
+                            <!--  Remember Me  -->
+                            <StackLayout Orientation="Horizontal" Spacing="0">
+                                <CheckBox
+                                IsChecked="{Binding RememberMe}"
+                                VerticalOptions="Center"
+                                Visual="Material"
+                                Color="{StaticResource TertiaryColor}" />
+                                <Label
+                                FontSize="{StaticResource MediumFontSize}"
+                                Text="Remember Me"
+                                TextColor="{StaticResource TertiaryColor}"
+                                VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RememberMeTappedCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <!--  Login Button  -->
+                            <Button
+                            Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsNotBusy}"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Text="Login" />
+                            <!--  Forgot Password  -->
+                            <Label
+                            HorizontalOptions="Center"
+                            Style="{StaticResource SubtitleOneLabelStyle}"
+                            Text="Forgot Password"
+                            TextColor="{StaticResource TertiaryColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <!--  Sign Up  -->
+                            <Label
+                            HorizontalOptions="Center"
+                            Style="{StaticResource SubtitleOneLabelStyle}"
+                            Text="Sign Up"
+                            TextColor="{StaticResource TertiaryColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SignUpCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                <Label
+                                FontSize="Micro"
+                                Text="Version"
+                                TextColor="{StaticResource TertiaryColor}"
+                                VerticalTextAlignment="Center" />
+                                <Label
+                                FontSize="Micro"
+                                Text="{Binding AppVersion}"
+                                TextColor="{StaticResource TertiaryColor}"
+                                VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <!--<controls:Loading IsVisible="{Binding IsBusy}" LoadingMessage="{i18n:Translate Loading}" />-->
+            </Grid>
+        </viewControls:CustomScrollView>
+ 
+
+    </ContentPage.Content>
+</local:LoginViewXaml>
+

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<controls1:FormControl
+    x:Class="JLOFT.Mobile.Views.Controls.JLOFTEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RedBit.Mobile.Controls;assembly=RedBit.Mobile.Controls"
+    xmlns:controls1="clr-namespace:JLOFT.Mobile.Views.Controls"
+    xmlns:converters="clr-namespace:JLOFT.Mobile.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:JLOFT.Mobile.Views"
+    x:Name="this"
+    mc:Ignorable="d">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:StringIsEmptyBooleanConverter x:Key="StringIsEmptyBooleanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <controls1:BorderedFormControl
+            x:Name="formControlView"
+            BindingContext="{x:Reference this}"
+            UseUniformHeight="True">
+            <controls1:BorderedFormControl.InnerContent>
+                <StackLayout Orientation="Horizontal">
+                    <controls:BorderlessEntry
+                        x:Name="entry"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="{Binding Source={x:Reference this}, Path=Keyboard}"
+                        Placeholder="{Binding Source={x:Reference this}, Path=Placeholder}"
+                        PlaceholderColor="{StaticResource GreyTextColor}"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding Source={x:Reference this}, Path=EntryText, Mode=TwoWay}"
+                        TextColor="{Binding Source={x:Reference this}, Path=EntryTextColor}" />
+                    <ContentView Padding="10,0">
+                        <Image Source="{Binding Source={x:Reference this}, Path=EntryImageSource}" VerticalOptions="Center" />
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=EntryImageCommand}" />
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+
+                </StackLayout>
+            </controls1:BorderedFormControl.InnerContent>
+        </controls1:BorderedFormControl>
+    </ContentView.Content>
+</controls1:FormControl>
+

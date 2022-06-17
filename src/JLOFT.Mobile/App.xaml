@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="JLOFT.Mobile.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <!-- Colors -->
+        <Color x:Key="GreyTextColor">#5F6C80</Color>
+        <Color x:Key="TertiaryColor">#215732</Color>
+        <!--  Spacing  -->
+        <x:Double x:Key="EntrySpacing">8</x:Double>
+        <!-- Font Sizes -->
+        <x:Double x:Key="TinyFontSize">12</x:Double>
+        <!-- Styles -->
+        <Style x:Key="CaptionLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource TinyFontSize}"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </Application.Resources>
+</Application>

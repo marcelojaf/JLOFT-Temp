@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<controls1:FormControl
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RedBit.Mobile.Controls;assembly=RedBit.Mobile.Controls"
+    xmlns:controls1="clr-namespace:JLOFT.Mobile.Views.Controls"
+    xmlns:converters="clr-namespace:JLOFT.Mobile.Converters"
+    x:Name="this"
+    x:Class="JLOFT.Mobile.Views.Controls.JLOFTPwEntry">
+<ContentView.Resources>
+        <ResourceDictionary>
+            <converters:StringIsEmptyBooleanConverter x:Key="StringIsEmptyBooleanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <controls1:BorderedFormControl
+            x:Name="formControlView"
+            BindingContext="{x:Reference this}"
+            UseUniformHeight="True">
+            <controls1:BorderedFormControl.InnerContent>
+                <StackLayout Orientation="Horizontal">
+                    <controls:BorderlessEntry
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="{Binding Source={x:Reference this}, Path=HidePassword, Mode=OneWay}"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding Source={x:Reference this}, Path=EntryText, Mode=TwoWay}"
+                        TextColor="{Binding Source={x:Reference this}, Path=LabelTextColor}" />
+                    <controls:ImageToggleButton
+                        Padding="20,0"
+                        IsToggled="{Binding Source={x:Reference this}, Path=HidePassword, Mode=TwoWay}"
+                        ToggledOffImage="{Binding Source={x:Reference this}, Path=ToggledOffImage, TargetNullValue='visibility_off'}"
+                        ToggledOnImage="{Binding Source={x:Reference this}, Path=ToggledOnImage, TargetNullValue='password'}" />
+                </StackLayout>
+            </controls1:BorderedFormControl.InnerContent>
+        </controls1:BorderedFormControl>
+    </ContentView.Content>
+</controls1:FormControl>
+
